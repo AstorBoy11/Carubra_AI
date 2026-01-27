@@ -145,7 +145,7 @@ export default function Home() {
       {/* Footer */}
       <footer className="relative z-10 text-center py-4">
         <p className="text-white/30 text-sm">
-          PT Utero Kreatif Indonesia © 2024
+          PT Utero Kreatif Indonesia X POLINEMA DEV © 2026
         </p>
       </footer>
     </div>
