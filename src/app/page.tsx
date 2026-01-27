@@ -43,12 +43,12 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-red-950 to-slate-900 overflow-hidden relative">
+    <div className="min-h-screen bg-liniear-to-br from-slate-900 via-red-950 to-slate-900 overflow-hidden relative">
       {/* Animated background elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-1/4 -left-20 w-96 h-96 bg-red-600/20 rounded-full blur-3xl animate-pulse" />
         <div className="absolute bottom-1/4 -right-20 w-96 h-96 bg-rose-600/20 rounded-full blur-3xl animate-pulse animation-delay-1000" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-red-700/10 rounded-full blur-3xl" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-150 h-150 bg-red-700/10 rounded-full blur-3xl" />
       </div>
 
       {/* Grid pattern overlay */}
@@ -82,7 +82,6 @@ export default function Home() {
             <p className="text-white/50 text-xs">Virtual Assistant</p>
           </div>
         </div>
-
       </header>
 
       {/* Main content */}
@@ -104,7 +103,7 @@ export default function Home() {
         </div>
 
         {/* Response/Chat bubble */}
-        <div className="w-full max-w-2xl mb-8 min-h-[100px]">
+        <div className="w-full max-w-2xl mb-8 min-h-25">
           {response && !messages.length ? (
             <div className="text-center">
               <p className="text-white/90 text-lg leading-relaxed bg-white/5 backdrop-blur-md rounded-2xl px-6 py-4 border border-white/10">
