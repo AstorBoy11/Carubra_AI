@@ -43,7 +43,7 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-red-950 to-slate-900 overflow-x-hidden relative">
+    <div className="h-[100dvh] bg-gradient-to-br from-slate-900 via-red-950 to-slate-900 overflow-hidden relative flex flex-col">
       {/* Animated background elements - separated to prevent scroll issues */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-1/4 -left-20 w-96 h-96 bg-red-600/20 rounded-full blur-3xl animate-pulse" />
@@ -64,7 +64,7 @@ export default function Home() {
       />
 
       {/* Header */}
-      <header className="relative z-10 flex items-center justify-between px-6 py-4">
+      <header className="relative z-10 flex items-center justify-between px-6 py-4 shrink-0">
         <div className="flex items-center gap-3">
           <div className="w-20 h-20 relative">
             <Image
@@ -86,9 +86,10 @@ export default function Home() {
       </header>
 
       {/* Main content */}
-      <main className="relative z-10 flex flex-col items-center justify-center min-h-[calc(100dvh-180px)] px-4">
+      {/* Main content */}
+      <main className="relative z-10 flex-1 flex flex-col items-center justify-center min-h-0 px-4">
         {/* Avatar section */}
-        <div className="relative mb-8">
+        <div className="relative mb-4 shrink-0">
           {/* Glow effect behind avatar */}
           <div
             className={`
@@ -104,7 +105,7 @@ export default function Home() {
         </div>
 
         {/* Response/Chat bubble */}
-        <div className="w-full max-w-2xl mb-8 min-h-25">
+        <div className="w-full max-w-2xl mb-4 flex-1 min-h-0 flex flex-col justify-center">
           {response && !messages.length ? (
             <div className="text-center">
               <p className="text-white/90 text-lg leading-relaxed bg-white/5 backdrop-blur-md rounded-2xl px-6 py-4 border border-white/10">
@@ -112,7 +113,7 @@ export default function Home() {
               </p>
             </div>
           ) : messages.length > 0 ? (
-            <ChatBubble messages={messages} currentResponse={response} />
+            <ChatBubble messages={messages} currentResponse={response} className="h-full" />
           ) : (
             <div className="text-center">
               <p className="text-white/50 text-base">
@@ -123,27 +124,31 @@ export default function Home() {
         </div>
 
         {/* Voice control */}
-        <VoiceControl
-          state={state}
-          onStart={startListening}
-          onStop={handleStopInteraction}
-          isSupported={isSupported}
-          transcript={transcript}
-        />
+        <div className="shrink-0 mb-4">
+          <VoiceControl
+            state={state}
+            onStart={startListening}
+            onStop={handleStopInteraction}
+            isSupported={isSupported}
+            transcript={transcript}
+          />
+        </div>
 
         {/* Greet button */}
         {state === 'idle' && !messages.length && (
-          <button
-            onClick={greet}
-            className="mt-6 px-6 py-2 bg-white/10 hover:bg-white/20 rounded-full text-white/80 text-sm transition-all duration-300 border border-white/20"
-          >
-            Sapa Saya
-          </button>
+          <div className="shrink-0 mb-4">
+            <button
+              onClick={greet}
+              className="px-6 py-2 bg-white/10 hover:bg-white/20 rounded-full text-white/80 text-sm transition-all duration-300 border border-white/20"
+            >
+              Sapa Saya
+            </button>
+          </div>
         )}
       </main>
 
       {/* Footer */}
-      <footer className="relative z-10 text-center py-4">
+      <footer className="relative z-10 text-center py-4 shrink-0">
         <p className="text-white/30 text-sm">
           PT Utero Kreatif Indonesia X POLINEMA DEV © 2026
         </p>

@@ -123,8 +123,18 @@ export const useVoiceAI = (options: UseVoiceAIOptions = {}): UseVoiceAIReturn =>
             console.log('[AI] API Response status:', res.status);
 
             if (!res.ok) {
-                const errorData = await res.json().catch(() => ({}));
-                console.error('[AI] API Error:', errorData);
+                let errorData;
+                try {
+                    errorData = await res.json();
+                } catch {
+                    // If JSON parsing fails, try to get text
+                    try {
+                        errorData = await res.text();
+                    } catch {
+                        errorData = 'Unknown error';
+                    }
+                }
+                console.error('[AI] API Error:', errorData, 'Status:', res.status);
                 throw new Error('Failed to get response from AI');
             }
 

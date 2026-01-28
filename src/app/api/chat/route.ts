@@ -25,8 +25,10 @@ export async function POST(request: NextRequest) {
         }
 
         const apiKey = process.env.OPENROUTER_API_KEY;
+        console.log('API Key configured:', apiKey ? 'Yes (Starts with ' + apiKey.substring(0, 4) + '...)' : 'No');
+
         if (!apiKey) {
-            console.error('OPENROUTER_API_KEY is not configured');
+            console.error('OPENROUTER_API_KEY is not configured in environment variables');
             return NextResponse.json(
                 { error: 'API key not configured' },
                 { status: 500 }

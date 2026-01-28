@@ -6,15 +6,20 @@ import { Message } from '@/types';
 interface ChatBubbleProps {
     messages: Message[];
     currentResponse?: string;
+    className?: string; // Allow custom styling/dimensions
 }
 
-const ChatBubble: React.FC<ChatBubbleProps> = ({ messages, currentResponse }) => {
-    // Get last few messages to display
-    const displayMessages = messages.slice(-4);
+const ChatBubble: React.FC<ChatBubbleProps> = ({ messages, currentResponse, className = '' }) => {
+    const bottomRef = React.useRef<HTMLDivElement>(null);
+
+    // Auto scroll to bottom when new messages arrive
+    React.useEffect(() => {
+        bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
+    }, [messages, currentResponse]);
 
     return (
-        <div className="w-full max-w-lg mx-auto space-y-3">
-            {displayMessages.map((message, index) => (
+        <div className={`w-full max-w-lg mx-auto overflow-y-auto px-2 space-y-3 scrollbar-thin scrollbar-thumb-white/20 scrollbar-track-transparent ${className}`}>
+            {messages.map((message, index) => (
                 <div
                     key={index}
                     className={`
@@ -44,6 +49,8 @@ const ChatBubble: React.FC<ChatBubbleProps> = ({ messages, currentResponse }) =>
                     </div>
                 </div>
             )}
+
+            <div ref={bottomRef} />
         </div>
     );
 };
