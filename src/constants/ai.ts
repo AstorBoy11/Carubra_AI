@@ -92,7 +92,7 @@ export const AI_MODELS: AIModel[] = [
       isFree: false,
    },
 ];
-
+ 
 // Default to the most stable OpenRouter model (verified working)
 export const DEFAULT_MODEL = 'nvidia/nemotron-nano-9b-v2:free';
 export const DEFAULT_PROVIDER: AIProvider = 'openrouter';
