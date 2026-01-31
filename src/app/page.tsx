@@ -72,7 +72,7 @@ export default function Home() {
       {/* Header */}
       <header className="relative z-50 flex items-center justify-between px-4 py-3 md:py-4 shrink-0 h-16 md:h-20">
         <div className="flex items-center gap-2 md:gap-3">
-          <div className="w-8 h-8 sm:w-10 sm:h-10 md:w-14 md:h-14 relative shrink-0">
+          <div className="w-14 h-14 sm:w-16 sm:h-16 md:w-20 md:h-20 relative shrink-0">
             <Image
               src={Logo}
               alt="Utero Logo"

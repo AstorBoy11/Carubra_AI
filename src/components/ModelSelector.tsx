@@ -55,7 +55,7 @@ export const ModelSelector = ({ selectedModel, onModelChange, disabled }: ModelS
       {/* Dropdown Menu */}
       {isOpen && (
         <div className="
-          absolute right-0 top-full mt-2 
+          absolute right-0 top-full mt-2 mr-2
           w-64 max-h-[60vh] overflow-y-auto 
           rounded-xl border border-white/20 
           shadow-2xl shadow-black
