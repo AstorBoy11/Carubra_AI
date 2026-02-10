@@ -5,7 +5,7 @@ import Image from 'next/image';
 import { AvatarCanvas, VoiceControl, ChatBubble, ModelSelector } from '@/components';
 import { useVoiceAI } from '@/hooks/useVoiceAI';
 import { AIModel } from '@/constants/ai';
-import Logo from './logo.png';
+
 
 export default function Home() {
   const {
@@ -87,21 +87,19 @@ export default function Home() {
       {/* Header */}
       <header className="relative z-50 flex items-center justify-between px-4 py-3 md:py-4 shrink-0 h-16 md:h-20">
         <div className="flex items-center gap-2 md:gap-3">
-          <div className="w-14 h-14 sm:w-16 sm:h-16 md:w-20 md:h-20 relative shrink-0">
+          <div className="hidden sm:flex items-center gap-4">
             <Image
-              src={Logo}
-              alt="Utero Logo"
-              fill
-              className="object-contain"
+              src="/logouterov2.png"
+              alt="Utero Interactive AI"
+              width={180}
+              height={50}
+              className="h-12 md:h-14 w-auto object-contain"
               priority
-              sizes="56px"
             />
-          </div>
-          <div className="hidden sm:block">
-            <h1 className="text-white font-bold text-sm md:text-lg tracking-tight whitespace-nowrap">
-              Utero AI
-            </h1>
-            <p className="text-white/50 text-[10px] sm:text-xs">Virtual Assistant</p>
+            <div className="h-8 w-px bg-white/10" />
+            <p className="text-white/50 text-xs md:text-sm tracking-widest uppercase font-medium">
+              Virtual Assistant
+            </p>
           </div>
         </div>
 
@@ -166,8 +164,8 @@ export default function Home() {
                   onClick={handleToggleVAD}
                   disabled={state === 'processing' || state === 'speaking'}
                   className={`px-4 py-2 rounded-full text-xs sm:text-sm transition-all duration-300 border backdrop-blur-sm flex items-center gap-2 ${isVADMode
-                      ? 'bg-cyan-500/30 border-cyan-400/50 text-cyan-300 hover:bg-cyan-500/40'
-                      : 'bg-white/10 border-white/20 text-white/80 hover:bg-white/20'
+                    ? 'bg-cyan-500/30 border-cyan-400/50 text-cyan-300 hover:bg-cyan-500/40'
+                    : 'bg-white/10 border-white/20 text-white/80 hover:bg-white/20'
                     } disabled:opacity-50 disabled:cursor-not-allowed`}
                   title={isVADMode ? 'Matikan deteksi suara otomatis' : 'Aktifkan deteksi suara otomatis'}
                 >
@@ -206,7 +204,7 @@ export default function Home() {
             {/* VAD Mode Status */}
             {isVADMode && state === 'standby' && (
               <p className="text-cyan-400/70 text-xs animate-pulse">
-                🎙️ Mendengarkan... Mulai berbicara kapan saja
+                Mendengarkan... Mulai berbicara kapan saja
               </p>
             )}
           </div>
