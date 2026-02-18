@@ -285,6 +285,11 @@ export const useVoiceAI = (options: UseVoiceAIOptions = {}): UseVoiceAIReturn =>
             }
 
             const data: ChatResponse = await res.json();
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            const via = (data as any)._via || 'unknown';
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            const usedModel = (data as any)._usedModel || 'unknown';
+            console.log(`[AI] Response received via: ${via} | Model: ${usedModel}`);
             const aiResponse = data.choices?.[0]?.message?.content || 'Maaf, terjadi kesalahan.';
             const cleanResponse = cleanTextForTTS(aiResponse);
 

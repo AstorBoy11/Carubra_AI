@@ -19,13 +19,13 @@ const N8N_WEBHOOK_URL = process.env.N8N_WEBHOOK_URL;
 const USE_N8N = process.env.USE_N8N === 'true';
 
 // Call n8n Webhook
-async function callN8N(message: string, history: ChatMessage[], model: string): Promise<unknown> {
+async function callN8N(message: string, history: ChatMessage[], model: string, provider: string): Promise<unknown> {
     if (!N8N_WEBHOOK_URL) {
         throw new Error('N8N_WEBHOOK_URL is not configured');
     }
 
     console.log('[n8n] Calling webhook:', N8N_WEBHOOK_URL);
-    console.log('[n8n] Model:', model, '| Message:', message.substring(0, 50) + '...');
+    console.log('[n8n] Provider:', provider, '| Model:', model, '| Message:', message.substring(0, 50) + '...');
 
     const response = await fetch(N8N_WEBHOOK_URL, {
         method: 'POST',
@@ -36,6 +36,7 @@ async function callN8N(message: string, history: ChatMessage[], model: string): 
             message,
             history,
             model,
+            provider,
         }),
     });
 
@@ -216,14 +217,12 @@ export async function POST(request: NextRequest) {
         const modelInfo = getModelById(selectedModel);
         const provider: AIProvider = requestedProvider || modelInfo?.provider || 'openrouter';
 
-        // ========================================
         // Mode 1: n8n as the AI Brain
-        // ========================================
         if (USE_N8N && N8N_WEBHOOK_URL) {
             console.log('[Chat API] Using n8n mode | Model:', selectedModel);
 
             try {
-                const responseData = await callN8N(message, history, selectedModel);
+                const responseData = await callN8N(message, history, selectedModel, provider);
 
                 return NextResponse.json({
                     ...(responseData as object),
@@ -236,9 +235,8 @@ export async function POST(request: NextRequest) {
             }
         }
 
-        // ========================================
+
         // Mode 2: Direct API calls (fallback)
-        // ========================================
         console.log('[Chat API] Using direct API mode | Model:', selectedModel, 'Provider:', provider);
 
         // Build messages array with system prompt and history
