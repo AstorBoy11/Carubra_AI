@@ -90,7 +90,7 @@ export default function Home() {
           {/* Mobile: small logo only */}
           <div className="flex sm:hidden items-center gap-3">
             <Image
-              src="/carubra-v1.png"
+              src="/carubra-agent.png"
               alt="CarubraAI"
               width={120}
               height={120}
@@ -110,7 +110,7 @@ export default function Home() {
           {/* Desktop: logo + divider + subtitle */}
           <div className="hidden sm:flex items-center gap-5">
             <Image
-              src="/carubra-v1.png"
+              src="/carubra-agent.png"
               alt="CarubraAI"
               width={180}
               height={50}
