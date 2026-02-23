@@ -2,7 +2,7 @@
 
 import { useState, useCallback, useRef, useEffect } from 'react';
 import { VoiceState, Message, ChatResponse } from '@/types';
-import { DEFAULT_MODEL, GREETING_MESSAGE, getModelById, AIProvider } from '@/constants/ai';
+import { DEFAULT_MODEL, DEFAULT_PROVIDER, GREETING_MESSAGE } from '@/constants/ai';
 import { useVAD } from './useVAD';
 
 // Configuration
@@ -259,15 +259,14 @@ export const useVoiceAI = (options: UseVoiceAIOptions = {}): UseVoiceAIReturn =>
         setMessages((prev) => [...prev, newUserMessage]);
 
         try {
-            const modelInfo = getModelById(currentModel);
-            const provider: AIProvider = modelInfo?.provider || 'gemini';
+            const provider = DEFAULT_PROVIDER;
 
             const res = await fetch('/api/chat', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
                     message: userMessage,
-                    model: currentModel,
+                    model: DEFAULT_MODEL,
                     provider: provider,
                     history: messagesRef.current.slice(-10),
                 }),

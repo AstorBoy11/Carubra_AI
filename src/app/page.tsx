@@ -2,9 +2,8 @@
 
 import { useEffect } from 'react';
 import Image from 'next/image';
-import { VoiceControl, ChatBubble, ModelSelector } from '@/components';
+import { VoiceControl, ChatBubble } from '@/components';
 import { useVoiceAI } from '@/hooks/useVoiceAI';
-import { AIModel } from '@/constants/ai';
 
 
 export default function Home() {
@@ -18,8 +17,6 @@ export default function Home() {
     messages,
     greet,
     stopSpeaking,
-    currentModel,
-    setCurrentModel,
     networkError,
     // VAD features
     isVADMode,
@@ -58,10 +55,7 @@ export default function Home() {
     }
   };
 
-  const handleModelChange = (model: AIModel) => {
-    setCurrentModel(model.id);
-    console.log('[Model] Changed to:', model.name, '(', model.provider, ')');
-  };
+
 
   return (
     <div className="h-[100dvh] w-full bg-gradient-to-br from-slate-900 via-red-950 to-slate-900 overflow-hidden relative flex flex-col">
@@ -129,12 +123,13 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="shrink-0 w-32 sm:w-auto self-center">
-          <ModelSelector
-            selectedModel={currentModel}
-            onModelChange={handleModelChange}
-            disabled={state !== 'idle'}
-          />
+        <div className="shrink-0 self-center">
+          <div className="flex items-center gap-2 px-3 py-1.5 sm:px-4 sm:py-2 rounded-full bg-white/5 border border-white/10 backdrop-blur-sm">
+            <div className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+            <span className="text-white/50 text-[10px] sm:text-xs font-medium tracking-wider uppercase">
+              Powered by Carubra
+            </span>
+          </div>
         </div>
       </header>
 

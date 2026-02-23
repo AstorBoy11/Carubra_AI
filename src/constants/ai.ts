@@ -1,5 +1,5 @@
-// AI Model configuration
-export type AIProvider = 'openrouter' | 'gemini';
+// AI Model configuration - Fixed to Gemini 2.0 Flash
+export type AIProvider = 'gemini';
 
 export interface AIModel {
    id: string;
@@ -9,83 +9,19 @@ export interface AIModel {
    isFree?: boolean;
 }
 
-// Available AI Models - Gemini first (more reliable), then OpenRouter
-export const AI_MODELS: AIModel[] = [
-   // Gemini Models (requires API quota - usually more reliable)
-   {
-      id: 'gemini-2.0-flash',
-      name: 'Gemini 2.0 Flash',
-      provider: 'gemini',
-      description: 'Google Gemini 2.0 Flash - Latest & Fast',
-      isFree: true,
-   },
-   {
-      id: 'gemini-1.5-flash',
-      name: 'Gemini 1.5 Flash',
-      provider: 'gemini',
-      description: 'Google Gemini 1.5 Flash - Balanced',
-      isFree: true,
-   },
-   // OpenRouter Models (Free)
-   {
-      id: 'nvidia/nemotron-nano-9b-v2:free',
-      name: 'Nemotron Nano 9B',
-      provider: 'openrouter',
-      description: 'NVIDIA Nemotron Nano 9B V2 (Free)',
-      isFree: true,
-   },
-   {
-      id: 'qwen/qwen3-4b:free',
-      name: 'Qwen 3 4B',
-      provider: 'openrouter',
-      description: 'Qwen 3 4B (Free) - Fast & Lightweight',
-      isFree: true,
-   },
-   {
-      id: 'openai/gpt-oss-120b:free',
-      name: 'GPT-OSS 120B',
-      provider: 'openrouter',
-      description: 'OpenAI GPT-OSS 120B (Free)',
-      isFree: true,
-   },
-   {
-      id: 'google/gemma-3-27b-it:free',
-      name: 'Gemma 3 27B',
-      provider: 'openrouter',
-      description: 'Google Gemma 3 27B Instruct (Free)',
-      isFree: true,
-   },
-   {
-      id: 'google/gemma-3-12b-it:free',
-      name: 'Gemma 3 12B',
-      provider: 'openrouter',
-      description: 'Google Gemma 3 12B Instruct (Free)',
-      isFree: true,
-   },
-   {
-      id: 'meta-llama/llama-3.3-70b-instruct:free',
-      name: 'Llama 3.3 70B',
-      provider: 'openrouter',
-      description: 'Meta Llama 3.3 70B Instruct (Free)',
-      isFree: true,
-   },
-   {
-      id: 'deepseek/deepseek-r1-0528:free',
-      name: 'DeepSeek R1',
-      provider: 'openrouter',
-      description: 'DeepSeek R1 0528 - Reasoning Model (Free)',
-      isFree: true,
-   },
-   {
-      id: 'meta-llama/llama-3.1-405b-instruct:free',
-      name: 'Llama 3.1 405B',
-      provider: 'openrouter',
-      description: 'Meta Llama 3.1 405B Instruct (Free) - Largest',
-      isFree: true,
-   },
-];
+// Single model: Gemini 2.0 Flash
+export const AI_MODEL: AIModel = {
+   id: 'gemini-2.0-flash',
+   name: 'Gemini 2.0 Flash',
+   provider: 'gemini',
+   description: 'Google Gemini 2.0 Flash - Latest & Fast',
+   isFree: true,
+};
 
-// Default to Gemini (more reliable when OpenRouter rate limited)
+// Keep array for backward compatibility
+export const AI_MODELS: AIModel[] = [AI_MODEL];
+
+// Fixed model and provider
 export const DEFAULT_MODEL = 'gemini-2.0-flash';
 export const DEFAULT_PROVIDER: AIProvider = 'gemini';
 
@@ -217,4 +153,3 @@ export const LISTENING_MESSAGE = "Saya mendengarkan...";
 export const PROCESSING_MESSAGE = "Sedang memproses...";
 
 export const ERROR_MESSAGE = "Maaf, terjadi kesalahan. Silakan coba lagi.";
-
