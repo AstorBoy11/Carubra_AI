@@ -146,7 +146,13 @@ export default function Home() {
           <div className={`absolute inset-0 rounded-full blur-2xl transition-all duration-500 ${state === 'standby' ? 'bg-cyan-500/30' : ''} ${state === 'listening' ? 'bg-green-500/30' : ''} ${state === 'processing' ? 'bg-yellow-500/30' : ''} ${state === 'speaking' ? 'bg-rose-500/30' : ''} ${state === 'idle' ? 'bg-red-500/20' : ''}`} />
 
           <Image
-            src="/Avatar.png"
+            src={
+              state === 'listening'
+                ? "/Avatar-listening.png" // Gambar variasi kedua (mendengar)
+                : state === 'processing'
+                  ? "/Avatar-thinking.png"  // Gambar pose berpikir
+                  : "/Avatar.png"           // Gambar default/idle
+            }
             alt="Carubra AI Avatar"
             width={400}
             height={400}
