@@ -96,9 +96,6 @@ export default function Home() {
               <p className="text-white/60 text-[10px] tracking-[0.15em] uppercase font-medium">
                 Virtual Assistant
               </p>
-              <p className="text-white/35 text-[8px] tracking-wider">
-                by Utero Indonesia
-              </p>
             </div>
           </div>
           {/* Desktop: logo + divider + subtitle */}
@@ -115,9 +112,6 @@ export default function Home() {
             <div className="flex flex-col gap-1">
               <p className="text-white/70 text-sm md:text-base tracking-[0.2em] uppercase font-semibold">
                 Virtual Assistant
-              </p>
-              <p className="text-white/40 text-xs md:text-sm tracking-wider font-light">
-                by Utero Indonesia
               </p>
             </div>
           </div>
@@ -172,7 +166,7 @@ export default function Home() {
             ) : (
               <div className="text-center py-2">
                 <p className="text-white/50 text-sm md:text-base leading-relaxed max-w-md mx-auto">
-                  Tekan tombol mikrofon dan ajukan pertanyaan seputar PT Utero Kreatif Indonesia
+                  Tekan tombol mikrofon dan ajukan pertanyaan atau perintah apa pun kepada saya. 
                 </p>
               </div>
             )}
@@ -249,7 +243,7 @@ export default function Home() {
       {/* Footer */}
       <footer className="relative z-10 text-center py-3 shrink-0 landscape:hidden md:landscape:block">
         <p className="text-white/30 text-[10px] sm:text-xs">
-          © 2026 CarubraAI — PT Utero Kreatif Indonesia X POLINEMA DEV
+          © 2026 CarubraAI — I Don't Know DEV
         </p>
       </footer>
     </div>
